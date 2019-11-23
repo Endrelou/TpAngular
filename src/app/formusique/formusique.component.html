@@ -1,0 +1,17 @@
+<div>
+    <form [formGroup]="infosMusique" (ngSubmit)="onSumbit()">
+        <div class="form-group">
+            <label for="lien">Lien</label>
+            <input type="text" class="form-control" id="lien" formControlName="lien">
+        </div>
+        <div class="form-group">
+            <label for="favoris">Favoris  </label><br>
+            <mat-checkbox id="favoris" formControlName="favoris"></mat-checkbox>
+        </div>
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="infosMusique.invalid">Envoyer</button>
+    </form>
+</div>
+  
+
+  
