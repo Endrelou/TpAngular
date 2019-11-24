@@ -19,9 +19,9 @@
 
 <div *ngIf="champsValid == true" >
     <h1>Vos Musiques</h1>
+    <app-musique *ngFor="let musique of musiques" [m]="musique"></app-musique>
 </div>
 
-    <app-musique *ngFor="let musique of musiques" [m]="musique"></app-musique>
 
 
   
