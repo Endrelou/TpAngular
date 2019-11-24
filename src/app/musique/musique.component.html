@@ -1,4 +1,4 @@
-<p class="nom">{{ m.nom }} </p>
+<p class="nom">{{ m.nom }} <span *ngIf="m.favoris == true" style="color: red">Favoris</span> </p>
 
 <div class="musique">
     <p class="left"> Ajouter le : {{ m.date | date }} </p> 
