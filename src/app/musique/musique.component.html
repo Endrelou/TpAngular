@@ -1,1 +1,14 @@
-<p> Musique go</p>
+<p class="nom">{{ m.nom }} </p>
+
+<div class="musique">
+    <p class="left"> Ajouter le : {{ m.date | date }} </p> 
+    <div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <a href="{{m.lien}}">
+                <button mat-stroked-button class="btncolor" type="submit">Ecouter</button>
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+.musique {
+    background-color: #f55;
+    margin: 1em;
+    padding: 2em;
+    border-radius: 1em;
+}
+
+.nom{
+    font-size: 2em;
+}
+
+.btncolor{
+    background-color: #fff;
+}

@@ -1,17 +1,29 @@
-<div>
-    <form [formGroup]="infosMusique" (ngSubmit)="onSumbit()">
+<div *ngIf="champsValid == false">
+    <form [formGroup]="Data" (ngSubmit)="onSumbit()">
         <div class="form-group">
-            <label for="lien">Lien</label>
+            <label for="lien">Lien (Youtube)</label>
             <input type="text" class="form-control" id="lien" formControlName="lien">
         </div>
+        <div class="form-group">
+            <label for="lien">Nom</label>
+            <input type="text" class="form-control" id="nom" formControlName="nom">
+        </div>      
         <div class="form-group">
             <label for="favoris">Favoris  </label><br>
             <mat-checkbox id="favoris" formControlName="favoris"></mat-checkbox>
         </div>
 
-        <button mat-raised-button color="primary" type="submit" [disabled]="infosMusique.invalid">Envoyer</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="Data.invalid">Envoyer</button>
     </form>
 </div>
+
+<div *ngIf="champsValid == true" >
+    <h1>Vos Musiques</h1>
+</div>
+
+    <app-musique *ngFor="let musique of musiques" [m]="musique"></app-musique>
+
+
   
 
   

@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Musique } from "../musique";
+import { lienAllowedValidator } from '../shared/lien.validator';
+
 
 @Component({
   selector: 'app-formusique',
@@ -7,25 +10,43 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./formusique.component.css']
 })
 export class FormusiqueComponent implements OnInit {
-  infosMusique: FormGroup;
-  champsValid = false;
+  musiques: Musique[];
+  Data: FormGroup;
+  champsValid: boolean = false;
 
-  constructor(private formBuilder: FormBuilder) {    
+
+  constructor(private formBuilder: FormBuilder) {   
   }
 
   ngOnInit() {
-    this.infosMusique = this.formBuilder.group({
-      lien: ['', Validators.required],
+    this.Data = this.formBuilder.group({
+      lien: ['', [
+        Validators.required, 
+        lienAllowedValidator('https://www.youtube.com/watch?v=')
+      ]],
+      nom: ['', Validators.required],
       favoris:  [false]
     });
+  
+    const musiques = localStorage.getItem('musiques');
+    this.musiques = musiques ? JSON.parse(musiques) : [];
+  }
+
+  updtMusiques() {
+    localStorage.setItem('musiques', JSON.stringify(this.musiques));
   }
 
 
   onSumbit() {
-    console.log(this.infosMusique.value);
-    
+    this.musiques.push({
+      id: this.musiques.length > 0 ? this.musiques[(this.musiques.length - 1)].id + 1 : 0,
+      lien: this.Data.value.lien,
+      nom: this.Data.value.nom,
+      favoris: this.Data.value.favoris,
+      date: new Date()
+    });
+
     this.champsValid = true;
+    this.updtMusiques();
   }
-
-
 }
